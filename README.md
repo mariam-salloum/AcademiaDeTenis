@@ -9,3 +9,11 @@
  7. npm install mongoose --save
  8. Instalamos angular: ng new client && cd client/ && ng serve
 
+## Pasos para clonar el repositorio
+
+1. git clone https://github.com/mariam-salloum/AcademiaDeTenis.git
+2. Dentro de la carpeta, hacer "npm install"
+3. cd client -> "npm install"
+4. ng build (seguir dentro de la carpeta client)
+5. cd ..
+6. nodemon index.js
