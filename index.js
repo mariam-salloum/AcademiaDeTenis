@@ -1,8 +1,15 @@
 const express = require('express');
-const app = express();
+const path = require('path');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const passport = require('passport');
 const mongoose = require('mongoose');
 const config = require('./config/database');
-const path = require('path');
+const users = require('./routes/users.js');
+
+const app = express();
+
+const port = 8080;
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.uri, (err) => {
@@ -13,12 +20,32 @@ mongoose.connect(config.uri, (err) => {
     }
 });
 
-app.use(express.static(__dirname + '/client/dist/'));
+/* app.use(express.static(__dirname + '/client/dist/')); */
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname + '/client/dist/index.html'));
+// Cors Middleware
+app.use(cors());
+
+// Set Static Folder
+app.use(express.static(path.join(__dirname, 'client')));
+
+// Body Parser Middleware
+app.use(bodyParser.json());
+
+// Passport
+app.use(passport.initialize());
+app.use(passport.session());
+
+require('./config/passport')(passport);
+
+app.use('/users', users);
+
+// Home Route
+app.get('/', (req, res) => {
+    res.send('Hello Word')
+    /* res.sendFile(path.join(__dirname + '/client/dist/index.html')); */
 });
 
-app.listen(8080, () => {
-    console.log('Listening on port 8080');
+// Start Server
+app.listen(port, () => {
+    console.log('Listening on port '+ port);
 });
