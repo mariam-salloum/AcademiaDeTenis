@@ -1,51 +1,25 @@
+'use strict'
+
+const mongoose = require('mongoose')
+const app = require('./app')
+const config = require('./config')
 const express = require('express');
 const path = require('path');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const passport = require('passport');
-const mongoose = require('mongoose');
-const config = require('./config/database');
-const users = require('./routes/users.js');
-
-const app = express();
-
-const port = 8080;
-
 mongoose.Promise = global.Promise;
-mongoose.connect(config.uri, (err) => {
-    if (err) {
-        console.log('Cloud NOT connect to database: ', err);
-    } else {
-        console.log('Connected to database: ' + config.db);
-    }
-});
 
-/* app.use(express.static(__dirname + '/client/dist/')); */
+mongoose.connect(config.db, (err,res) =>{
+	if (err) { 
+		console.log(`error en conexion a la bd: $:{err}`)
+	}
+	console.log('Conexion a la bd establecida')
 
-// Cors Middleware
-app.use(cors());
+	app.listen(config.port, () =>{
+		console.log(`Escuchando en http:://localhost:${config.port}`)
+	})
+})
 
-// Set Static Folder
-app.use(express.static(path.join(__dirname, 'client')));
+app.use(express.static(__dirname + '/client/dist/client/'));
 
-// Body Parser Middleware
-app.use(bodyParser.json());
-
-// Passport
-app.use(passport.initialize());
-app.use(passport.session());
-
-require('./config/passport')(passport);
-
-app.use('/users', users);
-
-// Home Route
-app.get('/', (req, res) => {
-    res.send('Hello Word')
-    /* res.sendFile(path.join(__dirname + '/client/dist/index.html')); */
-});
-
-// Start Server
-app.listen(port, () => {
-    console.log('Listening on port '+ port);
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname + '/client/dist/client/index.html'));
 });

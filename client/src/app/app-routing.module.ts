@@ -17,7 +17,7 @@ import { InfoComponent } from './secciones/info/info.component';
 const appRoutes = [
     { path: '', component: InicioComponent },
     { path: 'login', component: LoginComponent },
-    { path: 'registrar', component: RegistrarComponent, canActivate:[AuthGuard]},
+    { path: 'registrar', component: RegistrarComponent/*, canActivate:[AuthGuard]*/},
     { path: 'academiadetenis_info', component: InfoComponent},
     { path: 'torneos', component: TorneosComponent },
     { path: 'membrasias', component: MembrasiasComponent },

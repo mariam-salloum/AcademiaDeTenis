@@ -20,7 +20,7 @@ export class AuthService {
     let headers = new Headers();
     headers.append('Content-Type','application/json');
     return this.http.post(
-      'http://localhost:8080/users/register', 
+      'http://localhost:8080/api/signup', 
       user, {headers: headers}).pipe(map(res => res.json())
     );
   }
@@ -29,9 +29,10 @@ export class AuthService {
     let headers = new Headers();
     headers.append('Content-Type','application/json');
     return this.http.post(
-      'http://localhost:8080/users/authenticate',
+      'http://localhost:8080/api/signin',
       user, {headers: headers}).pipe(map(res => res.json())
     );
+    
   }
 
   getProfile() {
@@ -40,7 +41,7 @@ export class AuthService {
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type','application/json');
     return this.http.get(
-      'http://localhost:8080/users/profile',
+      'http://localhost:8080/api/perfil',
       {headers: headers}).pipe(map(res => res.json())
     );
   }

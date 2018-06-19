@@ -61,7 +61,7 @@ export class RegistrarComponent implements OnInit {
         this.router.navigate(['/login']);
       } else {
         console.log('Algo salio mal');
-        this.router.navigate(['/register']);
+        this.router.navigate(['/registrar']);
       }
     });
   }

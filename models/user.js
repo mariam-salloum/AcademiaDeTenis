@@ -1,65 +1,65 @@
-const moongose = require('mongoose');
-const bcrypt = require('bcrypt');
-const config = require('../config/database');
+'use strict'
 
-// User Schema
-const UserSchema = moongose.Schema({
-    nombre: { 
-        type: String,
-        required: true
-    },
-    apellido: {
-        type: String,
-        required: true
-    },
-    cedula: {
-        type: String,
-        //unique: true,
-        required: true
-    },
-    f_nacimiento: {
-        type: String,
-        required: true
-    },
-    email: { 
-        type: String,
-        //unique: true,
-        required: true,
-    },
-    password: {
-        type: String,
-        required: true
-    },
-    telefono: {
-        type: String,
-        required: true
-    }
-});
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
+const bcrypt = require('bcrypt-nodejs')
+const crypto = require('crypto')
 
-const User = module.exports = moongose.model('User', UserSchema);
+const UserSchema = new Schema({
+  //Datos del atleta
+  email: { type: String, unique: true, lowercase: true },
+  nombreAtl: String,
+  apellidoAtl: String,
+  cedulaAtl: String,
+  fechaNacAtl: Date,
+  fechaIngAtl: {type: Date, default: Date.now()},
+  telefonoAtl: Number,
+  sexoAtl: {type: String, enum:['masculino','femenino', 'otro']},
+  avatar: String,
+  password: { type: String, select: false },
+  //Datos del representante
+  emailRpr: { type: String, lowercase: true },
+  nombreRpr: String,
+  apellidoRpr: String,
+  cedulaRpr: String,
+  fechaNacRpr: String,
+  telefonoRpr: Number,
+  parentesco: {type: String, enum:['padre','madre', 'otro']},
+  pin: { type: String, select: false },
+  //Datos categoria
+  nombreCtg: String,
+  //Datos membresia
+  nombreMbs: String,
+  precioMbs: Number,
+  //Datos pago
+  estadoCta: {type: String, enum:['Al dia', 'Moroso', 'Esperando confirmacion']},
+  //Datos de sesion
+  tipo : {type: String, enum:['admin', 'user']},
+  signupDate: { type: Date, default: Date.now() },
+  lastLogin: Date
+})
 
-module.exports.getUserById = function(id, callback) {
-    User.findById(id, callback);
+UserSchema.pre('save', (next) => {
+  let user = this
+  //if (!user.isModified('password')) return next()
+
+  bcrypt.genSalt(10, (err, salt) => {
+    if (err) return next(err)
+
+    bcrypt.hash(user.password, salt, null, (err, hash) => {
+      if (err) return next(err)
+
+      user.password = hash
+      next()
+    })
+  })
+})
+
+UserSchema.methods.gravatar = function () {
+  if (!this.email) return `https://gravatar.com/avatar/?s=200&d=retro`
+
+  const md5 = crypto.createHash('md5').update(this.email).digest('hex')
+  return `https://gravatar.com/avatar/${md5}?s=200&d=retro`
 }
 
-module.exports.getUserByEmail = function(email, callback) {
-    const query = { email: email };
-    User.findOne(query, callback);
-}
-
-module.exports.addUser = function(newUser, callback) {
-    bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(newUser.password, salt, (err, hash) => {
-            if (err) throw err;
-            newUser.password = hash;
-            newUser.save(callback);
-        });
-    });
-}
-
-module.exports.comparePassword = function(candidatePassword, hash, callback) {
-    bcrypt.compare(candidatePassword, hash, (err, isMatch) => {
-        if(err) throw err;
-        callback(null, isMatch);
-    });
-}
+module.exports = mongoose.model('User', UserSchema)

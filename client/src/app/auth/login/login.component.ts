@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
     }
 
     this.authService.autenticarUsuario(user).subscribe((data:any) => {
+      console.log(user); 
       if(data.success) {
         this.authService.almacenarDatosUsuario(data.token, data.user);
         this.router.navigate(['/']);
