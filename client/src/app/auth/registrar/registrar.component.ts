@@ -32,7 +32,7 @@ export class RegistrarComponent implements OnInit {
   }
 
   onRegisterSubmit() {
-     const user = {
+    const user = {
       nombre: this.nombre,
       apellido: this.apellido,
       cedula: this.cedula,
@@ -56,7 +56,8 @@ export class RegistrarComponent implements OnInit {
       console.log('por favor, coloque un telefono valido xxx xxx xxxx');
     } else 
       this.authService.registrarUsuario(user).subscribe(data => {
-      if(data.success) {
+        console.log(data);
+      if(data) {
         console.log('Ya estas registrado!');
         this.router.navigate(['/login']);
       } else {

@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  onLoginSubmit(){
+  onLoginSubmit() {
     const user = {
       email: this.email,
       password: this.password
@@ -25,8 +25,8 @@ export class LoginComponent implements OnInit {
 
     this.authService.autenticarUsuario(user).subscribe((data:any) => {
       console.log(user); 
-      if(data.success) {
-        this.authService.almacenarDatosUsuario(data.token, data.user);
+      if(data) {
+        this.authService.almacenarDatosUsuario(data);
         this.router.navigate(['/']);
       } else {
         console.log(data.msg);

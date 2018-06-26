@@ -42,10 +42,10 @@ function signUp (req, res) {
   user.save((err) => {
     if (err) return res.status(500).send({ message: `Error al crear el usuario: ${err}` })
     if (user.tipo == "admin"){
-      return res.status(201).send({token: service.createTokenAdmin(user)})
+      return res.json({token: service.createTokenAdmin(user)})
     }
     else{
-      return res.status(201).send({ token: service.createToken(user) })
+      return res.json({ token: service.createToken(user) })
     }
   })
 }

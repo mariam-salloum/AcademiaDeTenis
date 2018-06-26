@@ -1,41 +1,28 @@
-.navbar {
-    border-top: 4px solid #f4c20d;
-    padding: 0 4rem;
-    border-radius: 0px;
-    text-transform: uppercase;
-}
+ .navbar {
+    border-top: 6px solid #8BC34A;
+    border-radius: 0;
+    font-weight: 400;
+ }
 
-.btn a,
-.btn:link,
-.btn:visited {
-    padding: .5rem 2rem;
-    display: block;
-    text-decoration: none;
+ .container-fluid {
+    padding: 0 12rem;
+ }
+
+ .btn-light-green a,
+ .btn-light-green a:link,
+ .btn-light-green a:visited,
+ .btn-light-green a:focus {
     color: #fff;
-    transition: all .4s;
-}
-
-.btn a:hover,
-.btn a:active {
     text-decoration: none;
-    color: #222;
-}
-
-.btn,
-.btn:link,
-.btn:visited,
-.btn:focus {
-    margin-left: 1rem;
-    padding: 0;
-    border-radius: 20px;
-    border: 2px solid #8BC34A;
-    background-color: #8BC34A;
-    transition: all .4s;
     outline: none;
-}
+ }
 
-.btn:hover,
-.btn:active {
-    border: 2px solid #8BC34A;
-    background-color: transparent;
-}
+ .btn-light-green a:hover,
+ .btn-light-green a:active {
+    text-decoration: none;
+    outline: none;
+ } 
+
+ li {
+    padding: 0 1rem;
+ }

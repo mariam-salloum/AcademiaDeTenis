@@ -15,7 +15,7 @@ export class AuthService {
 
   constructor(private http:Http, public jwtHelper: JwtHelperService) { }
 
-  // posrt request a la bd
+  // post request a la base de datos
   registrarUsuario(user) {
     let headers = new Headers();
     headers.append('Content-Type','application/json');
@@ -46,12 +46,12 @@ export class AuthService {
     );
   }
 
-  almacenarDatosUsuario(token, user) {
+  almacenarDatosUsuario(token) {
     localStorage.setItem('id_token', token);
     // Se convierte a String para localStorage, luego cuando se devuelve se parsea a JSON
-    localStorage.setItem('user', JSON.stringify(user));
+    // localStorage.setItem('user', JSON.stringify(user));
     this.authToken = token;
-    this.user = user;
+    // this.user = user;
   }
 
   // Se busca el token en el local storage
@@ -60,26 +60,11 @@ export class AuthService {
     this.authToken = token;
   }
 
-
-
-  // Revisa si estamos en nuestra sesion
-/*   loggedIn() {
-    if (localStorage.id_token == undefined ){
-      console.log('Not LoggedIn yet');
-      return true
-    } else {
-      console.log('Logged In');
-      const helper = new JwtHelperService();
-      console.log(helper.isTokenExpired(localStorage.id_token));  
-      return !helper.isTokenExpired(localStorage.id_token);
-     }
-  }  */
-
   usuarioAutenticado() {
     return this.authToken != null;
   }
 
-  esAdministrador() {
+/*   esAdministrador() {
     const user = JSON.parse(localStorage.getItem('user'));
     if(this.authToken != null && user.email == "admin@academiadetenis.com") {
       console.log('Es Administrador!');
@@ -87,12 +72,12 @@ export class AuthService {
     } else {
       return false;
     }
-  }
+  } */
 
   // LogOut
   logout() {
     this.authToken = null;
-    this.user = null;
+    // this.user = null;
     localStorage.clear();
   }
 }

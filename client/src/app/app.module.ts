@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 // Features
 import { NavbarComponent } from './header/navbar/navbar.component';
@@ -54,7 +55,8 @@ export function tokenGetter() {
         tokenGetter: tokenGetter,
         whitelistedDomains: ['localhost:8080']
       }
-    }) 
+    }),
+    MDBBootstrapModule.forRoot()
   ],
   providers: [ValidacionService, AuthService],
   bootstrap: [AppComponent]

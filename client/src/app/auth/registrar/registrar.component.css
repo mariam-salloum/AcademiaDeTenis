@@ -1,3 +1,22 @@
+.page-header {
+    font-weight: 400;
+}
+
+label {
+    font-weight: 400;
+}
+
+input[type="text"],
+input[type="password"] {
+    border-left: 4px solid #8BC34A;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-left: 4px solid #8BC34A;
+    border: 1px solid #8BC34A;
+}
+
 input[type="submit"] {
     width: 10rem;
     margin-bottom: 6rem;
