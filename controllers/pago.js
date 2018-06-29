@@ -17,7 +17,7 @@ function getPagos(req, res){
     	if (err) return res.status(500).send({message: `Error al realizar la petición: ${err}`})
     	if (!Pagos) return res.status(404).send({message: 'No existen Pagos'})
 
-    	res.send(200, { Pagos })
+    	res.json(Pagos)
 	})
 }
 
@@ -30,7 +30,7 @@ function getPagosAtleta(req, res){
     	if (err) return res.status(500).send({message: `Error al realizar la petición: ${err}`})
     	if (!Pagos) return res.status(404).send({message: 'No existen Pagos'})
 
-    	res.send(200, { Pagos })
+    	res.json( Pagos )
 	})
 }
 
@@ -45,7 +45,7 @@ function getPago(req, res){
    		if (err) return res.status(500).send({message: `Error al realizar la petición: ${err}`})
     	if (!Pago) return res.status(404).send({message: `El Pago no existe`})
 
-    	res.status(200).send({ Pago })
+    	res.json( Pago)
 	})
 }
 

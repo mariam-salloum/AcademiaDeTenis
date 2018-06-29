@@ -9,20 +9,30 @@ import { AuthGuard } from './auth/guards/auth.guard';
 // Features
 import { InicioComponent } from '../app/secciones/inicio/inicio.component';
 import { TorneosComponent } from './secciones/torneos/torneos.component';
-import { MembrasiasComponent } from './secciones/membrasias/membrasias.component';
+import { MembresiasComponent } from './secciones/membresias/membresias.component';
 import { AtletasComponent } from './secciones/atletas/atletas.component';
 import { PerfilComponent } from './secciones/perfil/perfil.component';
 import { InfoComponent } from './secciones/info/info.component';
+import { CrearMembresiaComponent } from './secciones/membresias/crear-membresia/crear-membresia.component';
+import { CategoriasComponent } from './secciones/categorias/categorias.component';
+import { CrearCategoriaComponent } from './secciones/categorias/crear-categoria/crear-categoria.component';
+import { PagosComponent } from './secciones/pagos/pagos.component';
+import { TiendaVirtualComponent } from './secciones/tienda-virtual/tienda-virtual.component';
 
 const appRoutes = [
     { path: '', component: InicioComponent },
-    { path: 'login', component: LoginComponent },
-    { path: 'registrar', component: RegistrarComponent/*, canActivate:[AuthGuard]*/},
+    { path: 'login', component: LoginComponent},
+    { path: 'registrar', component: RegistrarComponent, /*canActivate:[AuthGuard]*/},
     { path: 'academiadetenis_info', component: InfoComponent},
     { path: 'torneos', component: TorneosComponent },
-    { path: 'membrasias', component: MembrasiasComponent },
-    { path: 'atletas', component: AtletasComponent, canActivate:[AuthGuard]},
-    { path: 'perfil', component: PerfilComponent, canActivate:[AuthGuard]}
+    { path: 'membresias', component: MembresiasComponent },
+    { path: 'crear-membresia', component: CrearMembresiaComponent, /*canActivate:[AuthGuard]*/},
+    { path: 'categorias', component: CategoriasComponent },
+    { path: 'crear-categoria', component: CrearCategoriaComponent, /*canActivate:[AuthGuard]*/},
+    { path: 'atletas', component: AtletasComponent, /*canActivate:[AuthGuard]*/},
+    { path: 'pagos', component: PagosComponent, /*canActivate:[AuthGuard]*/},
+    { path: 'tienda-virtual', component: TiendaVirtualComponent },
+    { path: 'perfil', component: PerfilComponent, /*canActivate:[AuthGuard]*/}
 ];
 
 @NgModule({

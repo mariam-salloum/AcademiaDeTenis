@@ -18,7 +18,7 @@ function getPromos(req, res){
     	if (err) return res.status(500).send({message: `Error al realizar la petición: ${err}`})
     	if (!Promos) return res.status(404).send({message: 'No existen Promos'})
 
-    	res.send(200, { Promos })
+    	res.json(Promos )
 	})
 }
 
@@ -31,7 +31,7 @@ function getPromos(req, res){
     	if (err) return res.status(500).send({message: `Error al realizar la petición: ${err}`})
     	if (!Promos) return res.status(404).send({message: 'No existen Promos'})
 
-    	res.send(200, { Promos })
+    	res.json( Promos )
 	})
 }
 
@@ -46,7 +46,7 @@ function getPromo(req, res){
    		if (err) return res.status(500).send({message: `Error al realizar la petición: ${err}`})
     	if (!Promo) return res.status(404).send({message: `El Promo no existe`})
 
-    	res.status(200).send({ Promo })
+    	res.json( Promo )
 	})
 }
 

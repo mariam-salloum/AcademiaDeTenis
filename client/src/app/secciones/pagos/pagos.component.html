@@ -1,12 +1,6 @@
-<!-- <ul class="list-group">
-  <li class="list-group-item" *ngFor="let user of users">
-    {{ user.email }}
-  </li>
-</ul> -->
-
 <div class="row">
   <div class="col-md-8">
-      <h2>Registro de Atletas</h2>
+      <h2>Pagos</h2>
   </div>
   <div class="col-md-4">
     <button class="btn btn-light-green">
@@ -18,17 +12,13 @@
 <table class="table table-hover">
   <thead>
     <th>Atleta</th>
-    <th>Categoría</th>
-    <th>Cédula</th>
-    <th>Correo electrónico</th>
+    <th>Estados</th>
     <th></th>
   </thead>
   <tbody>
     <tr *ngFor="let user of users">
       <td *ngIf="user.tipo == 'user'">{{user.nombreAtl}} {{user.apellidoAtl}}</td>
-      <td *ngIf="user.tipo == 'user'">{{user.nombreCtg}}</td>
-      <td *ngIf="user.tipo == 'user'">{{user.cedulaAtl}}</td>
-      <td *ngIf="user.tipo == 'user'">{{user.email}}</td>
+      <td *ngIf="user.tipo == 'user'">{{user.estadoCta}}</td>
       <td *ngIf="user.tipo == 'user'">
         <a (click)="editar()">
           <i class="fa fa-pencil"></i> &nbsp; &nbsp;

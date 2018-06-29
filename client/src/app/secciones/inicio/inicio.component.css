@@ -1,0 +1,19 @@
+.fa {
+    font-size: 15px;
+    font-weight: 400;
+    margin-right: .2rem;
+}
+
+h3 {
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+img {
+    margin: 2rem auto 0 auto;
+} 
+
+li {
+    font-size: 15px;
+}

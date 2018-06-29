@@ -1,3 +1,16 @@
+.col-md-6 {
+    color: #444444;
+    margin-top: 2rem;
+    background-color: #fafafa;
+    border-radius: 10px;
+    padding: 4rem;
+}
+
+.col-md-6:first-child {
+    margin-left: -4rem;
+    margin-right: 4rem;
+}
+
 .page-header {
     font-weight: 400;
 }
@@ -18,6 +31,24 @@ input[type="password"]:focus {
 }
 
 input[type="submit"] {
-    width: 10rem;
-    margin-bottom: 6rem;
+    width: 24.9rem;
+    margin-top: 1rem;
+    margin-left: -.05rem;
+}
+
+/* Footer */
+
+.comprobante_pago {
+    color: #444444;
+    background-color: #fafafa;
+    position: absolute;
+        bottom: 0;
+        left: 0;
+    width: 1680px;
+    height: 18vh;
+}
+
+h4 {
+    margin-top: 3rem;
+    font-weight: 400;
 }

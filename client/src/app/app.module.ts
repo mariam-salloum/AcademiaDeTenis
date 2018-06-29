@@ -17,14 +17,19 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegistrarComponent } from './auth/registrar/registrar.component';
 import { InicioComponent } from './secciones/inicio/inicio.component';
 import { TorneosComponent } from './secciones/torneos/torneos.component';
-import { MembrasiasComponent } from './secciones/membrasias/membrasias.component';
+import { MembresiasComponent } from './secciones/membresias/membresias.component';
 import { AtletasComponent } from './secciones/atletas/atletas.component';
 import { PerfilComponent } from './secciones/perfil/perfil.component';
+import { InfoComponent } from './secciones/info/info.component';
+import { CrearMembresiaComponent } from './secciones/membresias/crear-membresia/crear-membresia.component';
 
 // Auth
 import { AuthService } from './auth/servicios/auth.service';
 import { ValidacionService } from './auth/servicios/validacion.service';
-import { InfoComponent } from './secciones/info/info.component';
+import { CategoriasComponent } from './secciones/categorias/categorias.component';
+import { CrearCategoriaComponent } from './secciones/categorias/crear-categoria/crear-categoria.component';
+import { PagosComponent } from './secciones/pagos/pagos.component';
+import { TiendaVirtualComponent } from './secciones/tienda-virtual/tienda-virtual.component';
 
 export function tokenGetter() {
   return localStorage.getItem('id_token');
@@ -38,10 +43,15 @@ export function tokenGetter() {
     RegistrarComponent,
     InicioComponent,
     TorneosComponent,
-    MembrasiasComponent,
+    MembresiasComponent,
     AtletasComponent,
     PerfilComponent,
     InfoComponent,
+    CrearMembresiaComponent,
+    CategoriasComponent,
+    CrearCategoriaComponent,
+    PagosComponent,
+    TiendaVirtualComponent,
   ],
   imports: [
     BrowserModule,

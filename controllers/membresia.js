@@ -18,7 +18,7 @@ function getMembresias(req, res){
     	if (err) return res.status(500).send({message: `Error al realizar la petición: ${err}`})
     	if (!Membresias) return res.status(404).send({message: 'No existen Membresias'})
 
-    	res.json( Membresias)
+    	res.json(Membresias)
     //res.Write(JSON.stringify(Membresias))
 	})
 }
@@ -34,7 +34,7 @@ function getMembresia(req, res){
    		if (err) return res.status(500).send({message: `Error al realizar la petición: ${err}`})
     	if (!Membresia) return res.status(404).send({message: `El Membresia no existe`})
 
-    	res.status(200).send({ Membresia })
+    	res.json( Membresia)
 	})
 }
 
@@ -99,18 +99,18 @@ function updateMembresia(req, res){
  */
 function deleteMembresia(req, res){
 	let MembresiaId = req.params.MembresiaId
-
+	console.log(MembresiaId)
   	Membresia.findById(MembresiaId, (err, Membresia) => {
       User.find({nombreMbs: Membresia.tipo}, (err,usuario) =>{
         if(usuario.length > -1){
-          res.status(400).send({message: 'No se puede eliminar membresia asociada a usuarios'})
-          return null
+					return
+          //res.status(400).send({message: 'No se puede eliminar membresia asociada a usuarios'})
         }
       })
       Categoria.find({tipo: Membresia.tipo}, (err,categoria)=>{
         if(categoria.length > -1){
-          res.status(400).send({message: 'No se puede eliminar membresia asociada a categorias'})
-          return null
+					return
+          //res.status(400).send({message: 'No se puede eliminar membresia asociada a categorias'})
         }
       })
     if (err) res.status(500).send({message: `Error al borrar el Membresia: ${err}`})

@@ -1,36 +1,42 @@
 <nav class="navbar navbar-expand-lg navbar-light gray-color lighten-5">
-		<div class="container-fluid">
-			<a class="navbar-brand" href="#">ACADEMIA DE TENIS
-				<img src="assets/ball.png" width="18" height="18" class="d-inline-block align-top" alt="">
-			</a>
-			<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav">
-					<li><a class="nav-link" routerLink="/">INICIO</a></li>
-					<li><a class="nav-link" routerLink="/academiadetenis_info">¿QUIÉNES SOMOS?</a></li>
-					<li><a class="nav-link" routerLink="/torneos">TORNEOS</a></li>
-					<li><a class="nav-link" routerLink="/membrasias">MEMBRASÍAS</a></li>
-				</ul>
-				<ul class="navbar-nav navbar-right">
-					<!-- Si es administrador, se muestra el boton de Registrar Atleta *ngIf="authService.esAdministrador()"-->
-					<!-- <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" >
-							<a class="nav-link" routerLink="/registrar"><i class="fa fa-plus"></i> REGISTRAR ATLETA</a>
-					</li>  -->   
-					<!-- Si el usuario esta autenticado, se muestran los botones de perfil y logout -->
-					<ng-container *ngIf="authService.usuarioAutenticado(); else noAutenticado">
-						<li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
-							<a class="nav-link" routerLink="/perfil">PERFIL</a>
-						</li>        
-						<li> 
-							<a class="nav-link" (click)="onLogoutClick()" href="#">LOGOUT <i class="fa fa-sign-out"></i></a>
-						</li>
-					</ng-container>
-					<!-- Si no esta autenticado, se muestra el boton de Iniciar sesion -->
-					<ng-template #noAutenticado>
-						<button class="btn btn-light-green navbar-btn">
-							<a routerLink="/login">Iniciar sesión</a>
-						</button>
-					</ng-template>
-				</ul>
-			</div>
+	<div class="container-fluid">
+		<a class="navbar-brand" href="#">ACADEMIA DE TENIS
+			<img src="assets/ball.png" width="18" height="18" class="d-inline-block align-top" alt="">
+		</a>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav">
+				<li><a class="nav-link" routerLink="/">INICIO</a></li>
+				<!-- <li *ngIf="!authService.esAdministrador()"><a class="nav-link" routerLink="/academiadetenis_info">¿QUIÉNES SOMOS?</a></li> -->
+				<li><a class="nav-link" routerLink="/torneos">TORNEOS</a></li>
+				<li *ngIf="authService.esAdministrador()"><a class="nav-link" routerLink="/atletas">ATLETAS</a></li>
+				<li *ngIf="authService.esAdministrador()"><a class="nav-link" routerLink="/pagos">PAGOS</a></li>
+				<li><a class="nav-link" routerLink="/membresias">MEMBRASÍAS</a></li>
+				<li *ngIf="authService.esAdministrador()"><a class="nav-link" routerLink="/categorias">CATEGORÍAS</a></li>
+			</ul>
+			<ul class="navbar-nav navbar-right">
+				<!-- Si es administrador, se muestra el boton de Registrar Atleta *ngIf="authService.esAdministrador()"-->
+				<!-- <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" *ngIf="authService.esAdministrador()">
+					<a class="nav-link" routerLink="/registrar"><i class="fa fa-plus"></i> REGISTRAR ATLETA</a>
+				</li> -->
+				<!-- Si el usuario esta autenticado, se muestran los botones de perfil y logout -->
+				<ng-container *ngIf="authService.usuarioAutenticado(); else noAutenticado">
+					<li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+						<a class="nav-link" routerLink="/tienda-virtual"><i class="fa fa-shopping-cart"></i></a>
+					</li> 
+					<li *ngIf="!authService.esAdministrador()" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+						<a class="nav-link" routerLink="/perfil"><i class="fa fa-user"></i></a>
+					</li>        
+					<li> 
+						<a class="nav-link" (click)="onLogoutClick()" href="#">LOGOUT <i class="fa fa-sign-out"></i></a>
+					</li>
+				</ng-container>
+				<!-- Si no esta autenticado, se muestra el boton de Iniciar sesion -->
+				<ng-template #noAutenticado>
+					<button class="btn btn-light-green navbar-btn">
+						<a routerLink="/login">Iniciar sesión</a>
+					</button>
+				</ng-template>
+			</ul>
 		</div>
-	</nav>
+	</div>
+</nav>

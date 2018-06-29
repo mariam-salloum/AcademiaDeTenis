@@ -62,17 +62,11 @@ function signIn (req, res) {
     req.user = user
 
     if(user.tipo == "admin"){
-      res.json(service.createTokenAdmin(user))
-      /*res.status(200).send({
-        message: 'Te has logueado correctamente',
-        token: service.createTokenAdmin(user)
-      })*/
+      res.json({token: service.createTokenAdmin(user),
+                type: user.tipo})
     }else{
-      res.json(service.createToken(user))
-      /*res.status(200).send({
-        message: 'Te has logueado correctamente',
-        token: service.createToken(user)
-      })*/
+      res.json({token: service.createToken(user),
+                type: user.tipo})
     }
   })
 }

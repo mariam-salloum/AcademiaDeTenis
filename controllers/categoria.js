@@ -18,7 +18,7 @@ function getCategorias(req, res){
     	if (err) return res.status(500).send({message: `Error al realizar la petición: ${err}`})
     	if (!Categorias) return res.status(404).send({message: 'No existen Categorias'})
 
-    	res.send(200, { Categorias })
+    	res.json(Categorias)
 	}) 
 }
 
@@ -33,7 +33,7 @@ function getCategoria(req, res){
    		if (err) return res.status(500).send({message: `Error al realizar la petición: ${err}`})
     	if (!Categoria) return res.status(404).send({message: `El Categoria no existe`})
 
-    	res.status(200).send({ Categoria })
+    	res.json(Categoria)
 	})
 }
 
@@ -50,7 +50,7 @@ function saveCategoria(req, res){
 	categoria.nombre = req.body.nombre   //nombre de la categoria
 	categoria.tipo = req.body.tipo       //nombre de la membresia asociada
 	categoria.precio = req.body.precio   //precio de la membresia asociada
-  membresia.update_by = aux            //asigna el id del administrador que lo creo
+  categoria.update_by = aux            //asigna el id del administrador que lo creo
 	
 	categoria.save((err,CategoriaStored) =>{
 		if (err) res.status(500).send({message: `Error al guardar ${err}`})
@@ -96,7 +96,7 @@ function updateCategoria(req, res){
   	Categoria.findByIdAndUpdate(CategoriaId, update, (err, CategoriaUpdated) => {//modificar a que solo sea el nombre
     	if (err) res.status(500).send({message: `Error al actualizar el Categoria: ${err}`})
 
-    	res.status(200).send({ Categoria: CategoriaUpdated })
+    	res.json({ Categoria: CategoriaUpdated })
 	})
 }
 
@@ -111,27 +111,24 @@ function deleteCategoria(req, res){
       /*Verifica que no este asociada a un usuario*/
       User.find({nombreCtg: Categoria.nombre}, (err,usuario) =>{
         if(usuario.length > -1){
-          res.status(400).send({message: 'No se puede eliminar membresia asociada a usuarios'})
-          return null
+          return
         }
       })
       /*Verifica que no este asociado a una promocion como categoria anterior*/
       Promo.find({categoriaOld: Categoria.nombre}, (err,usuario) =>{
         if(usuario.length > -1){
-          res.status(400).send({message: 'No se puede eliminar membresia asociada a usuarios'})
-          return null
+          return
         }
       })
       /*Verifica que no este asociado a una promocion como categoria nueva*/
       Promo.find({categoriaNew: Categoria.nombre}, (err,usuario) =>{
         if(usuario.length > -1){
-          res.status(400).send({message: 'No se puede eliminar membresia asociada a usuarios'})
-          return null
+          return 
         }
       })
     /*Elimina la categoria*/  
     if (err) res.status(500).send({message: `Error al borrar el Categoria: ${err}`})
-    	res.status(200).send({Categoria: Categoria})
+    	//res.status(200).send({Categoria: Categoria})
     	console.log(err)
     	Categoria.remove(err => {
       		if (err) res.status(500).send({message: `Error al borrar el Categoria: ${err}`})
