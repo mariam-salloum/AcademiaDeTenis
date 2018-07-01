@@ -1,8 +1,10 @@
 <div *ngIf="user">
   <h2 class="page-header">{{user.nombreAtl}} {{user.apellidoAtl}}</h2>
   <ul class="list-group">
-    <li class="list-group-item">Cedula: {{user.cedulaAtl}}</li>
-    <li class="list-group-item">Fecha de Nacimiento: {{user.f}}</li>
-    <li class="list-group-item">Telefono: 0 {{user.telefonoAtl}}</li>        
+    <li class="list-group-item" *ngIf="user.cedulaAtl">Cedula: {{user.cedulaAtl}}</li>
+    <li class="list-group-item" *ngIf="user.fechaNacAtl">Fecha de Nacimiento: {{user.fechaNacAtl}}</li>
+    <li class="list-group-item" *ngIf="user.email">Email: {{user.email}}</li>
+    <li class="list-group-item" *ngIf="user.telefonoAtl">Teléfono: {{user.telefonoAtl}}</li>          
+    <li class="list-group-item" *ngIf="user.nombreCtg">Categoría: {{user.nombreCtg}}</li>        
   </ul>
 </div>

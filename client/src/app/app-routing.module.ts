@@ -19,6 +19,9 @@ import { CategoriasComponent } from './secciones/categorias/categorias.component
 import { CrearCategoriaComponent } from './secciones/categorias/crear-categoria/crear-categoria.component';
 import { PagosComponent } from './secciones/pagos/pagos.component';
 import { TiendaVirtualComponent } from './secciones/tienda-virtual/tienda-virtual.component';
+import { CrearTorneoComponent } from './secciones/torneos/crear-torneo/crear-torneo.component';
+import { ParticipantesComponent } from './secciones/torneos/participantes/participantes.component';
+import { AgregarParticipanteComponent } from './secciones/torneos/participantes/agregar-participante/agregar-participante.component';
 
 const appRoutes = [
     { path: '', component: InicioComponent },
@@ -26,6 +29,7 @@ const appRoutes = [
     { path: 'registrar', component: RegistrarComponent, /*canActivate:[AuthGuard]*/},
     { path: 'academiadetenis_info', component: InfoComponent},
     { path: 'torneos', component: TorneosComponent },
+    { path: 'crear-torneo', component: CrearTorneoComponent, /*canActivate:[AuthGuard]*/},
     { path: 'membresias', component: MembresiasComponent },
     { path: 'crear-membresia', component: CrearMembresiaComponent, /*canActivate:[AuthGuard]*/},
     { path: 'membresia/:id', component: EditarMembresiaComponent, /*canActivate:[AuthGuard]*/},
@@ -34,7 +38,10 @@ const appRoutes = [
     { path: 'atletas', component: AtletasComponent, /*canActivate:[AuthGuard]*/},
     { path: 'pagos', component: PagosComponent, /*canActivate:[AuthGuard]*/},
     { path: 'tienda-virtual', component: TiendaVirtualComponent },
-    { path: 'perfil', component: PerfilComponent, /*canActivate:[AuthGuard]*/}
+    { path: 'perfil', component: PerfilComponent, /*canActivate:[AuthGuard]*/},
+    { path: 'participantes/:id', component: ParticipantesComponent},
+    { path: 'agregar-participante', component: AgregarParticipanteComponent, /*canActivate:[AuthGuard]*/},
+
 ];
 
 @NgModule({

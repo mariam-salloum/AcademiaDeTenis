@@ -32,6 +32,9 @@ import { CrearCategoriaComponent } from './secciones/categorias/crear-categoria/
 import { PagosComponent } from './secciones/pagos/pagos.component';
 import { TiendaVirtualComponent } from './secciones/tienda-virtual/tienda-virtual.component';
 import { EditarMembresiaComponent } from './secciones/membresias/editar-membresia/editar-membresia.component';
+import { CrearTorneoComponent } from './secciones/torneos/crear-torneo/crear-torneo.component';
+import { ParticipantesComponent } from './secciones/torneos/participantes/participantes.component';
+import { AgregarParticipanteComponent } from './secciones/torneos/participantes/agregar-participante/agregar-participante.component';
 
 export function tokenGetter() {
   return localStorage.getItem('id_token');
@@ -54,7 +57,10 @@ export function tokenGetter() {
     CrearCategoriaComponent,
     PagosComponent,
     TiendaVirtualComponent,
-    EditarMembresiaComponent
+    EditarMembresiaComponent,
+    CrearTorneoComponent,
+    ParticipantesComponent,
+    AgregarParticipanteComponent
   ],
   imports: [
     BrowserModule,

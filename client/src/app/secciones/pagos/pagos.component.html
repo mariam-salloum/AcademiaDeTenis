@@ -2,28 +2,22 @@
   <div class="col-md-8">
     <h2>Pagos</h2>
   </div>
-  <div class="col-md-4">
-    <button class="btn btn-light-green">
-      <a routerLink="/registrar">
-        <i class="fa fa-plus"></i> REGISTRAR ATLETA</a>
-    </button>
-  </div>
 </div>
 <hr>
 
-
+<!-- Atletas -->
 <div class="panel-group">
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a data-toggle="collapse" href="#collapse1">Todos los Atletas</a>
+        <a data-toggle="collapse" href="#atletas">Atletas</a>
       </h4>
     </div>
-    <div id="collapse1" class="panel-collapse collapse">
+    <div id="atletas" class="panel-collapse collapse">
       <table class="table table-hover">
         <thead>
           <th>Atleta</th>
-          <th>Estados</th>
+          <th>Estado</th>
           <th></th>
         </thead>
         <tbody>
@@ -67,18 +61,19 @@
   </tbody>
 </table> -->
 
+<!-- Atletas morosos -->
 <div class="panel-group">
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a data-toggle="collapse" href="#collapse2">Atletas Morosos</a>
+        <a data-toggle="collapse" href="#morosos">Atletas Morosos</a>
       </h4>
     </div>
-    <div id="collapse2" class="panel-collapse collapse">
+    <div id="morosos" class="panel-collapse collapse">
       <table class="table table-hover">
         <thead>
           <th>Atleta</th>
-          <th>Estados</th>
+          <th>Estado</th>
           <th></th>
         </thead>
         <tbody>
@@ -99,6 +94,39 @@
     </div>
   </div>
 </div>
+
+<!-- Atletas pendientes -->
+<div class="panel-group">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" href="#pendientes">Atletas Pendientes</a>
+      </h4>
+    </div>
+    <div id="pendientes" class="panel-collapse collapse">
+      <table class="table table-hover">
+        <thead>
+          <th>Atleta</th>
+          <th>Estado</th>
+          <th></th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td *ngIf="user.estadoCta == 'Esperando confirmacion'">{{user.nombreAtl}} {{user.apellidoAtl}}</td>
+            <td *ngIf="user.estadoCta == 'Esperando confirmacion'">{{user.estadoCta}}</td>
+            <td *ngIf="user.estadoCta == 'Esperando confirmacion'">
+              <a (click)="editar()">
+                <i class="fa fa-pencil"></i> &nbsp; &nbsp;
+              </a>
+              <a (click)="eliminar(user._id)">
+                <i class="fa fa-trash"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
 <br>
 <br>

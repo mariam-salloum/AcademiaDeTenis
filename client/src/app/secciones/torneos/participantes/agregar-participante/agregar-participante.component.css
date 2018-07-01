@@ -1,0 +1,38 @@
+.col-md-4 {
+    color: #444444;
+    margin-top: 12rem;
+    background-color: #fafafa;
+    border-radius: 10px;
+    padding: 4rem;
+}
+
+.page-header {
+    letter-spacing: 2px;
+    font-weight: 400;
+    text-transform: uppercase;
+    margin: 3rem 0;
+}
+
+.fa {
+    font-size: 300%;
+}
+
+input[type="text"],
+input[type="password"] {
+    border-left: 4px solid #8BC34A;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-left: 4px solid #8BC34A;
+    border: 1px solid #8BC34A;
+}
+
+label {
+    font-weight: 400;
+}
+
+.btn-light-green {
+    margin-top: 1rem;
+    width: 28.4rem;
+}

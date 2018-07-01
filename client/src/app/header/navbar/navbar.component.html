@@ -10,7 +10,7 @@
 				<li><a class="nav-link" routerLink="/torneos">TORNEOS</a></li>
 				<li *ngIf="authService.esAdministrador()"><a class="nav-link" routerLink="/atletas">ATLETAS</a></li>
 				<li *ngIf="authService.esAdministrador()"><a class="nav-link" routerLink="/pagos">PAGOS</a></li>
-				<li><a class="nav-link" routerLink="/membresias">MEMBRASÍAS</a></li>
+				<li *ngIf="authService.esAdministrador()"><a class="nav-link" routerLink="/membresias">MEMBRASÍAS</a></li>
 				<li *ngIf="authService.esAdministrador()"><a class="nav-link" routerLink="/categorias">CATEGORÍAS</a></li>
 			</ul>
 			<ul class="navbar-nav navbar-right">
