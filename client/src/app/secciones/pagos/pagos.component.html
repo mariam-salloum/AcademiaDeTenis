@@ -1,15 +1,51 @@
 <div class="row">
   <div class="col-md-8">
-      <h2>Pagos</h2>
+    <h2>Pagos</h2>
   </div>
   <div class="col-md-4">
     <button class="btn btn-light-green">
-      <a routerLink="/registrar"><i class="fa fa-plus"></i> REGISTRAR ATLETA</a>
+      <a routerLink="/registrar">
+        <i class="fa fa-plus"></i> REGISTRAR ATLETA</a>
     </button>
   </div>
 </div>
 <hr>
-<table class="table table-hover">
+
+
+<div class="panel-group">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" href="#collapse1">Todos los Atletas</a>
+      </h4>
+    </div>
+    <div id="collapse1" class="panel-collapse collapse">
+      <table class="table table-hover">
+        <thead>
+          <th>Atleta</th>
+          <th>Estados</th>
+          <th></th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td *ngIf="user.tipo == 'user'">{{user.nombreAtl}} {{user.apellidoAtl}}</td>
+            <td *ngIf="user.tipo == 'user'">{{user.estadoCta}}</td>
+            <td *ngIf="user.tipo == 'user'">
+              <a (click)="editar()">
+                <i class="fa fa-pencil"></i> &nbsp; &nbsp;
+              </a>
+              <a (click)="eliminar(user._id)">
+                <i class="fa fa-trash"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- <table class="table table-hover">
   <thead>
     <th>Atleta</th>
     <th>Estados</th>
@@ -17,9 +53,9 @@
   </thead>
   <tbody>
     <tr *ngFor="let user of users">
-      <td *ngIf="user.tipo == 'user'">{{user.nombreAtl}} {{user.apellidoAtl}}</td>
-      <td *ngIf="user.tipo == 'user'">{{user.estadoCta}}</td>
-      <td *ngIf="user.tipo == 'user'">
+      <td *ngIf="user.estadoCta == 'Moroso'">{{user.nombreAtl}} {{user.apellidoAtl}}</td>
+      <td *ngIf="user.estadoCta == 'Moroso'">{{user.estadoCta}}</td>
+      <td *ngIf="user.estadoCta == 'Moroso'">
         <a (click)="editar()">
           <i class="fa fa-pencil"></i> &nbsp; &nbsp;
         </a>
@@ -29,4 +65,40 @@
       </td>
     </tr>
   </tbody>
-</table>
+</table> -->
+
+<div class="panel-group">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" href="#collapse2">Atletas Morosos</a>
+      </h4>
+    </div>
+    <div id="collapse2" class="panel-collapse collapse">
+      <table class="table table-hover">
+        <thead>
+          <th>Atleta</th>
+          <th>Estados</th>
+          <th></th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td *ngIf="user.estadoCta == 'Moroso'">{{user.nombreAtl}} {{user.apellidoAtl}}</td>
+            <td *ngIf="user.estadoCta == 'Moroso'">{{user.estadoCta}}</td>
+            <td *ngIf="user.estadoCta == 'Moroso'">
+              <a (click)="editar()">
+                <i class="fa fa-pencil"></i> &nbsp; &nbsp;
+              </a>
+              <a (click)="eliminar(user._id)">
+                <i class="fa fa-trash"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<br>
+<br>

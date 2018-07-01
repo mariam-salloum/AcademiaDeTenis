@@ -23,10 +23,6 @@ export class PagosComponent implements OnInit {
     });
   }
 
-  editar() {
-
-  }
-  
   eliminar(_id) {
     for(let i = 0; i < this.users.length; i++) {
       if (this.users[i]._id === _id) {

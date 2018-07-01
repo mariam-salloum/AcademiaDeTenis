@@ -28,7 +28,7 @@ function signUp (req, res) {
     nombreCtg: req.body.nombreCtg,
     nombreMbs: req.body.nombreMbs,
     precioMbs: req.body.precioMbs,
-    estadoCta: 'Al dia',
+    //estadoCta: 'Esperando Confirmacion',
     emailRpr: req.body.emailRpr,
     nombreRpr: req.body.nombreRpr,
     apellidoRpr: req.body.apellidoRpr,
@@ -39,6 +39,7 @@ function signUp (req, res) {
     tipo: req.body.tipo,
     pin: req.body.pin
   })
+  //console.log(user)
   user.save((err) => {
     if (err) return res.status(500).send({ message: `Error al crear el usuario: ${err}` })
     if (user.tipo == "admin"){
@@ -55,16 +56,16 @@ function signUp (req, res) {
  * @res datos de respuesta
  */
 function signIn (req, res) {
-  User.findOne({ email: req.body.email }, (err, user) => {
+  User.findOne({ email: req.body.email, password: req.body.password }, (err, user) => {
     if (err) return res.status(500).send({ message: err })
     if (!user) return res.status(400).send({ message: 'No existe el usuario' })
 
     req.user = user
 
-    if(user.tipo == "admin"){
+    if(user.tipo == "admin") {
       res.json({token: service.createTokenAdmin(user),
                 type: user.tipo})
-    }else{
+    } else {
       res.json({token: service.createToken(user),
                 type: user.tipo})
     }

@@ -10,10 +10,11 @@ import { AuthGuard } from './auth/guards/auth.guard';
 import { InicioComponent } from '../app/secciones/inicio/inicio.component';
 import { TorneosComponent } from './secciones/torneos/torneos.component';
 import { MembresiasComponent } from './secciones/membresias/membresias.component';
+import { CrearMembresiaComponent } from './secciones/membresias/crear-membresia/crear-membresia.component';
+import { EditarMembresiaComponent } from './secciones/membresias/editar-membresia/editar-membresia.component';
 import { AtletasComponent } from './secciones/atletas/atletas.component';
 import { PerfilComponent } from './secciones/perfil/perfil.component';
 import { InfoComponent } from './secciones/info/info.component';
-import { CrearMembresiaComponent } from './secciones/membresias/crear-membresia/crear-membresia.component';
 import { CategoriasComponent } from './secciones/categorias/categorias.component';
 import { CrearCategoriaComponent } from './secciones/categorias/crear-categoria/crear-categoria.component';
 import { PagosComponent } from './secciones/pagos/pagos.component';
@@ -27,6 +28,7 @@ const appRoutes = [
     { path: 'torneos', component: TorneosComponent },
     { path: 'membresias', component: MembresiasComponent },
     { path: 'crear-membresia', component: CrearMembresiaComponent, /*canActivate:[AuthGuard]*/},
+    { path: 'membresia/:id', component: EditarMembresiaComponent, /*canActivate:[AuthGuard]*/},
     { path: 'categorias', component: CategoriasComponent },
     { path: 'crear-categoria', component: CrearCategoriaComponent, /*canActivate:[AuthGuard]*/},
     { path: 'atletas', component: AtletasComponent, /*canActivate:[AuthGuard]*/},

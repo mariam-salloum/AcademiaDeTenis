@@ -65,11 +65,12 @@ function saveMembresia(req, res){
  */
 function updateMembresia(req, res){
 	let MembresiaId = req.params.MembresiaId
-  let update = req.body
+	let update = req.body
+	console.log(req.body)
     //Modifica los atletas con su antiguo nombre
-  	Membresia.findById(MembresiaId, (err, Membresia) => {
-  		console.log(Membresia)
-  		User.find({nombreMbs: Membresia.tipo}, (err,usuario) =>{
+  	Membresia.findById(MembresiaId, (err, membresia) => {
+  		console.log(membresia)
+  		User.find({nombreMbs: membresia.tipo}, (err,usuario) =>{
   			for (var i = usuario.length - 1; i >= 0; i--) {
   				User.findByIdAndUpdate(usuario[i]._id, {$set: {nombreMbs: req.body.tipo, precioMbs: req.body.precio}}, (err,userUpdated)=>{
   					console.log(userUpdated)
@@ -77,7 +78,7 @@ function updateMembresia(req, res){
   			}
   		})
       //Modifica las categorias de dicha membresia
-  		Categoria.find({tipo: Membresia.tipo}, (err,categoria)=>{
+  		Categoria.find({tipo: membresia.tipo}, (err,categoria)=>{
   			for (var i = categoria.length - 1; i >= 0; i--) {
   				Categoria.findByIdAndUpdate(categoria[i]._id, {$set: {tipo: req.body.tipo, precio: req.body.precio}}, (err,userUpdated)=>{
   					console.log(userUpdated)

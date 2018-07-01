@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { map } from 'rxjs/operators';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { RegistrarComponent } from '../registrar/registrar.component';
 
 @Injectable({
   providedIn: 'root'
@@ -82,18 +81,18 @@ export class AuthService {
   }
 
   // UPDATES
-  modificarMembresia(_id) {
+  modificarMembresia(_id,precio) {
     let headers = new Headers();
     this.loadToken();
-    headers.append('Authorization', "@earer " + this.authToken);
-    console.log('membresia modificandose!'+ _id);
+    //headers.append('Authorization', "@earer " + this.authToken);
+    console.log('membresia modificandose!' + _id);
     console.log('headers ', headers);
     return this.http.put(
-      'http://localhost:8080/api/membresia/'+ _id,
-      {headers: headers}).pipe(map(res => res.json()));
+      'http://localhost:8080/api/membresia/'+ _id, 
+      precio, {headers: headers}).pipe(map(res => res.json()));
   }
 
-  // Autenticar usuario a la hora de registrar
+  // Autenticar usuario a la hora de iniciar sesion
   autenticarUsuario(user) {
     let headers = new Headers();
     headers.append('Content-Type','application/json');
@@ -139,6 +138,12 @@ export class AuthService {
   getMembresias() {
     return this.http.get(
       'http://localhost:8080/api/membresias'
+    );
+  }
+
+  getMembresia(_id) {
+    return this.http.get(
+      'http://localhost:8080/api/membresia/'+_id
     );
   }
 

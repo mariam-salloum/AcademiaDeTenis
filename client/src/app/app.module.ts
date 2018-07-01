@@ -3,12 +3,13 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'
 import { AppRoutingModule } from './app-routing.module';
 import { HttpModule } from '@angular/http'; 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTableModule, MatSortModule } from '@angular/material';
 
 import { JwtModule } from '@auth0/angular-jwt';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 // Features
@@ -30,6 +31,7 @@ import { CategoriasComponent } from './secciones/categorias/categorias.component
 import { CrearCategoriaComponent } from './secciones/categorias/crear-categoria/crear-categoria.component';
 import { PagosComponent } from './secciones/pagos/pagos.component';
 import { TiendaVirtualComponent } from './secciones/tienda-virtual/tienda-virtual.component';
+import { EditarMembresiaComponent } from './secciones/membresias/editar-membresia/editar-membresia.component';
 
 export function tokenGetter() {
   return localStorage.getItem('id_token');
@@ -52,13 +54,13 @@ export function tokenGetter() {
     CrearCategoriaComponent,
     PagosComponent,
     TiendaVirtualComponent,
+    EditarMembresiaComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,    
     AppRoutingModule,
-    NgbModule.forRoot(),
     HttpClientModule,
     JwtModule.forRoot({
       config: {

@@ -1,54 +1,80 @@
-<div class="row">
-  <div class="col-md-8">
-      <h2>Lista de Membresías</h2>
+<!-- PANTALLA DE MEMBRESIAS PARA ADMINISTRADOR *ngIf="authService.esAdministrador(); else modoUsuario"-->
+<ng-container >
+  <div class="row">
+    <div class="col-md-8">
+        <h2>Lista de Membresías</h2>
+    </div>
+    <div class="col-md-4">
+      <button class="btn btn-light-green">
+        <a routerLink="/crear-membresia"><i class="fa fa-plus"></i> Membresías</a>
+      </button>
+    </div>
   </div>
-  <div class="col-md-4">
-    <button class="btn btn-light-green">
-      <a routerLink="/crear-membresia"><i class="fa fa-plus"></i> Membresías</a>
-    </button>
-  </div>
-</div>
-<hr>
-<table class="table table-hover">
-  <thead>
-    <th>Tipo</th>
-    <th>Precio</th>
-    <th></th>
-  </thead>
-  <tbody>
-    <tr *ngFor="let membresia of membresias; #i = index">
-      <td>{{membresia.tipo}}</td>
-      <td>{{membresia.precio}} $</td>
-      <td>
-        <a (click)="editar(membresia._id)">
-          <i class="fa fa-pencil" data-toggle="modal" (click)="modalEditar"></i> &nbsp; &nbsp;
-        </a>
-        
-        <a (click)="eliminar(membresia._id)">
-          <i class="fa fa-trash"></i> 
-        </a>
-      </td>
+  <hr>
+  <table class="table table-hover">
+    <thead>
+      <th>Tipo</th>
+      <th>Precio</th>
+      <th></th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let membresia of membresias">
+        <td>{{membresia.tipo}}</td>
+        <td>{{membresia.precio}} $</td>
+        <td>
+          <a (click)="editar(membresia._id)">
+            <i class="fa fa-pencil" [routerLink]="['/membresia', membresia._id]"></i> &nbsp; &nbsp;
+          </a>
+          
+          <a (click)="eliminar(membresia._id)">
+            <i class="fa fa-trash"></i> 
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-      <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-      
-          <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Editar Membresía: {{membresia.tipo}}</h4>
-            </div>
-            <div class="modal-body">
-              <p>Some text in the modal.</p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-light-green" data-dismiss="modal">Close</button>
-            </div>
-          </div>
-      
+<!-- Failed
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Editar</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Precio</label>
+            <input type="text" class="form-control" [(ngModel)]="precio" name="precio">
+          </div>  
+        </div>
+        <div class="modal-footer">
+            <input type="submit" class="btn btn-light-green" value="Guardar cambios" (click)="guardarCambios(_id, precio)">
+          <button type="button" class="btn btn-light-green" data-dismiss="modal">Cerrar</button>
         </div>
       </div>
+    </div>
+  </div> -->
+</ng-container>
 
-    </tr>
-  </tbody>
-</table>
+<!-- PANTALLA DE MEMBRESIAS PARA USUARIO -->
+<!-- <ng-template #modoUsuario>
+ <h2 style="margin-top: 4rem">Membresías disponibles</h2>
+ <hr>
+
+  <div class="row" >
+    <div class="col-lg-4 col-md-12" *ngFor="let membresia of membresias">
+      <div class="pricing-card card">
+        <div class="card-body text-center">
+          <h5>
+            <strong>{{membresia.tipo}}</strong>
+          </h5>
+          <div>
+            <h2 class="red-text number">{{membresia.precio}}$</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ng-template>  -->

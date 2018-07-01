@@ -33,3 +33,7 @@ th {
     outline: none;
     color: #fff;
 }
+
+.pricing-card {
+    padding: 2rem 0;
+}

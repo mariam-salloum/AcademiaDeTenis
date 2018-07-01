@@ -32,7 +32,7 @@ const UserSchema = new Schema({
   nombreMbs: String,
   precioMbs: Number,
   //Datos pago
-  estadoCta: {type: String, enum:['Al dia', 'Moroso', 'Esperando confirmacion'], default: 'Al dia'},
+  estadoCta: {type: String, enum:['Al dia', 'Moroso', 'Esperando confirmacion'], default: 'Esperando confirmacion'},
   //Datos de sesion
   tipo : {type: String, enum:['admin', 'user'], default: 'user'},
   signupDate: { type: Date, default: Date.now() },

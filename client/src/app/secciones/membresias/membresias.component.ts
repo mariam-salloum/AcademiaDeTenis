@@ -9,6 +9,8 @@ import { AuthService } from '../../auth/servicios/auth.service';
 })
 export class MembresiasComponent implements OnInit {
   membresias: any;
+  precio: Number;
+  membresia: any;
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -25,9 +27,35 @@ export class MembresiasComponent implements OnInit {
   }
 
   editar(_id) {
-    this.authService.modificarMembresia(_id).subscribe((res) => {
-      console.log('membresia modificandose');
+    this.authService.getMembresia(_id).subscribe(data => {
+      //console.log(res);
+      console.log(data);
+      console.log(this.membresias.precio);
     });
+  }
+
+  guardarCambios(_id, precio) {
+    console.log(precio)
+/*     this.authService.modificarMembresia(_id).subscribe((precioM) => {
+      /* console.log(precio);
+      precioM = precio;
+      console.log(precioM);
+      return precioM; 
+    }) */
+    /* this.authService.modificarMembresia(_id).subscribe((res) => {
+      console.log(res);
+      console.log("membresia selec: ", _id);
+      console.log("viejo:", precio);
+      this.membresias.precio = precio;
+      console.log("nuevo: ", this.membresias.precio);
+    }); */
+    
+    this.membresias.precio = precio;
+    console.log(this.membresias.precio);
+
+    this.authService.modificarMembresia(_id, precio).subscribe((res) => {
+      console.log("holis");
+    })
   }
 
   eliminar(_id) {
