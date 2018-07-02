@@ -2,11 +2,11 @@
   <div class="col-md-8">
       <h2>Torneos</h2>
   </div>
-  <div class="col-md-4">
-    <button class="btn btn-light-green">
-      <a routerLink="/crear-torneo"><i class="fa fa-plus"></i> Torneo</a>
-    </button>
-  </div>
+    <div class="col-md-4">
+      <button class="btn btn-light-green" *ngIf="authService.esAdministrador()">
+        <a routerLink="/crear-torneo"><i class="fa fa-plus"></i> Torneo</a>
+      </button>
+    </div>
 </div>
 <hr>
 <table class="table table-hover">
@@ -24,9 +24,6 @@
       <td>
         <a (click)="ver(torneo._id)" >
           <i class="fa fa-eye" [routerLink]="['/participantes', torneo._id]"></i> &nbsp; &nbsp;
-        </a>
-        <a (click)="editar()">
-          <i class="fa fa-pencil"></i> &nbsp; &nbsp;
         </a>
         <a (click)="eliminar(torneo._id)">
           <i class="fa fa-trash"></i>
