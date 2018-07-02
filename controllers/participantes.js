@@ -148,6 +148,7 @@ function deleteParticipante(req, res){
 module.exports = {
   getParticipantesTorneo,
   getParticipancionesTorneos,
+  getTorneosParticipantes,
   saveParticipante,
   nextParticipante,
   deleteParticipante
