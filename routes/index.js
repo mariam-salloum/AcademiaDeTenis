@@ -78,6 +78,7 @@ api.delete('/torneo/:TorneoId', /*auth,*/ torneoCtrl.deleteTorneo)
 api.get('/participantes/:TorneoId', /*auth,*/ partCtrl.getParticipantesTorneo)//Participantes de un torneo
 api.get('/participantes', partCtrl.getParticipancionesTorneos)//Participantes de todos los torneos
 api.post('/participante', /*auth,*/ partCtrl.saveParticipante)//Agrega participantes al torneo
+api.get('/participaciones/:UserId', /*auth,*/ partCtrl.getTorneosParticipantes)//Participantes de un torneo
 api.post('/participante/avance/:TorneoId', /*auth,*/ partCtrl.nextParticipante)//Agrega participantes al torneo
 api.delete('/participante/:TorneoId/:ParticipanteId', /*auth,*/ partCtrl.deleteParticipante)
 /*Manejo Usuarios*/

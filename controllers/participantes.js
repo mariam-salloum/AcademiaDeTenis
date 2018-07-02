@@ -1,4 +1,4 @@
-'use strict'
+﻿'use strict'
 /* Clase: Participante
  * Tablas en esquema: torneo
  * Tablas relacionadas: torneo, user
@@ -38,7 +38,20 @@ function getParticipancionesTorneos(req, res){
       res.json( Torneos )
   }) 
 }
-
+/* Obtener todas los participantes de un torneo
+ * @req datos de entrada
+ * @res datos de respuesta
+ */
+function getTorneosParticipantes(req, res){
+  let UserId = req.params.UserId
+  var aux;
+  Participante.find({jugador: UserId}).distinct('torneo', (err,por)=>{
+    aux = por
+    Torneo.find({_id: aux}, (err,x)=>{
+      res.json(x)
+    })
+  })
+}
 /* Agregar participante
  * @req datos de creacion
  * @res datos de respuesta
