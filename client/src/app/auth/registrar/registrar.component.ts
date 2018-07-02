@@ -13,6 +13,7 @@ import { HttpModule } from '@angular/http';
 })
 
 export class RegistrarComponent implements OnInit {
+  /* Atleta */
   nombreAtl: String;
   apellidoAtl: String;
   cedulaAtl: String;
@@ -23,22 +24,32 @@ export class RegistrarComponent implements OnInit {
   telefonoAtl: String;
 
   categorias: any;
+  categoria: any;
+
+  /* Representante */
+  emailRpr: String;
+  nombreRpr: String;
+  apellidoRpr: String;
+  cedulaRpr: String;
+ /*  fechaNacRpr: String; */
+  telefonoRpr: Number;
+  pin: String;
 
   // Los servicios se inyectan en el constructor
   constructor(
     private validacion: ValidacionService,
     private authService: AuthService,
-    private router:Router) {}
+    private router: Router) { }
 
   ngOnInit() {
-    this.authService.getCategorias().subscribe((categoria:any) => {
+    this.authService.getCategorias().subscribe((categoria: any) => {
       // .body es String, por eso lo parseamos para ser convertido en array
       console.log(categoria);
       this.categorias = JSON.parse(categoria._body);
       console.log(this.categorias);
     }, err => {
-        console.log(err);
-        return false;
+      console.log(err);
+      return false;
     });
   }
 
@@ -48,34 +59,45 @@ export class RegistrarComponent implements OnInit {
       apellidoAtl: this.apellidoAtl,
       cedulaAtl: this.cedulaAtl,
       fechaNacAtl: this.fechaNacAtl,
-      nombreCtg: this.categorias.nombre,
+      nombreCtg: this.categoria.nombre,
       email: this.email,
       password: this.password,
-      telefonoAtl: this.telefonoAtl 
-    }
+      telefonoAtl: this.telefonoAtl,
+      categoria: this.categoria,
+      nombreMbs: this.categoria.tipo,
+      precioMbs: this.categoria.precio,
 
+      emailRpr: this.emailRpr,
+      nombreRpr: this.nombreRpr,
+      apellidoRpr: this.apellidoRpr,
+      cedulaRpr: this.cedulaRpr,
+      /* fechaNacRpr: this.fechaNacRpr, */
+      telefonoRpr: this.telefonoRpr,
+      pin: this.pin,
+      
+    }
     // Campos requeridos
-    if(!this.validacion.validarRegistro(user)) {
+    if (!this.validacion.validarRegistro(user)) {
       console.log('Please fill in all Fields');
       return false;
-    } else if(!this.validacion.validarCedula(user.cedulaAtl)) {
+    } else if (!this.validacion.validarCedula(user.cedulaAtl)) {
       console.log('Cedula venezolana');
-    } else if(!this.validacion.validarFecha(user.fechaNacAtl)) {
+    } else if (!this.validacion.validarFecha(user.fechaNacAtl)) {
       console.log('El formato es dd/mm/aa')
-    } else if(!this.validacion.validarEmail(user.email)) {
+    } else if (!this.validacion.validarEmail(user.email)) {
       console.log('por favor, coloque un email valido')
-    } else if(!this.validacion.validarTelefono(user.telefonoAtl)) {
+    } else if (!this.validacion.validarTelefono(user.telefonoAtl)) {
       console.log('por favor, coloque un telefono valido xxx xxx xxxx');
-    } else 
+    } else
       this.authService.registrarUsuario(user).subscribe(data => {
         console.log(data);
-      if(data) {
-        console.log('Ya estas registrado!');
-        this.router.navigate(['/atletas']);
-      } else {
-        console.log('Algo salio mal');
-        this.router.navigate(['/registrar']);
-      }
-    });
+        if (data) {
+          console.log('Ya estas registrado!');
+          this.router.navigate(['/atletas']);
+        } else {
+          console.log('Algo salio mal');
+          this.router.navigate(['/registrar']);
+        }
+      });
   }
 }

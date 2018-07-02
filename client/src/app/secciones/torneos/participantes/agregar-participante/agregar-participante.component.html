@@ -7,8 +7,8 @@
     <div class="form-group">
       <label>Atleta</label>
       <br>
-      <select [(ngModel)]="nombre" name="nombre" style="width: 29rem;">
-        <option *ngFor="let user of users" [ngValue]="nombre">
+      <select [(ngModel)]="user" name="user" style="width: 29rem;">
+        <option *ngFor="let user of users" [ngValue]="user">
           {{user.nombreAtl}} {{user.apellidoAtl}}
         </option>
       </select>

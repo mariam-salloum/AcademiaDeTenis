@@ -65,9 +65,9 @@ function savePago(req, res){
         }else{
         	let pago = new Pago()
 			pago.estado = "Esperando confirmacion" 		//Estado del pago
-			pago.fechaPago = req.body.fechaPago 		//Fecha del pago
 			pago.atleta = req.body.atleta 				//id del atleta
 			pago.codigo = req.body.codigo 				//codigo de transferencia
+			pago.estado = req.body.estado
 
 			/*Agregar a tabla user*/
 			User.findOne({_id: req.body.atleta}, (err, user) =>{
@@ -96,23 +96,39 @@ function updatePago(req, res){
 	let PagoId = req.params.PagoId
   	let update = req.body
 
+	User.findOne({_id: req.body.atleta}, (err, user)=>{
+		if (err) return res.status(500).send({message: `Error al realizar la petición: ${err}`})
+    	if (!user) return res.status(404).send({message: `El atleta no existe`})
+		let update = req.body.estado
+
+		Pago.findOneAndUpdate({atleta: req.body.atleta, estado: 'Pendiente'}, update, (err, pago)=>{
+			if (err) res.status(500).send({message: `Error al actualizar el Pago: ${err}`})
+
+			res.status(200).send({ Pago: PagoUpdated })
+		})
+		User.findByIdAndUpdate(user._id, {$set: {estadoCta: req.body.estado}}, (err, userUpdated) => {
+		    if (err) res.status(500).send({message: `Error al actualizar el usuario: ${err}`})
+
+			console.log(update)
+		 })
+	})/* 
   	User.findOne({_id: req.body.atleta}, (err, user) =>{
     	if (err) return res.status(500).send({message: `Error al realizar la petición: ${err}`})
     	if (!user) return res.status(404).send({message: `El atleta no existe`})
     	let update = req.body.estado
     	/*Modifica el usuario*/
-    	User.findByIdAndUpdate(user._id, {$set: {estadoCta: req.body.estado}}, (err, userUpdated) => {
+    	/* User.findByIdAndUpdate(user._id, {$set: {estadoCta: req.body.estado}}, (err, userUpdated) => {
 		    if (err) res.status(500).send({message: `Error al actualizar el usuario: ${err}`})
 
 			console.log(update)
 		 })
-  	})
+  	}) */
   	/*Modifica el registro del pago*/
-  	Pago.findByIdAndUpdate(PagoId, update, (err, PagoUpdated) => {
+  	/* Pago.findByIdAndUpdate(PagoId, update, (err, PagoUpdated) => {
     	if (err) res.status(500).send({message: `Error al actualizar el Pago: ${err}`})
 
     	res.status(200).send({ Pago: PagoUpdated })
-	})
+	})  */
 }
 
 /* Eliminar un pago dado

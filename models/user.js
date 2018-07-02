@@ -15,7 +15,6 @@ const UserSchema = new Schema({
   fechaIngAtl: {type: Date, default: Date.now()},
   telefonoAtl: Number,
   sexoAtl: {type: String, enum:['masculino','femenino', 'otro']},
-  avatar: String,
   password: { type: String, select: false },
   //Datos del representante
   emailRpr: { type: String, lowercase: true },

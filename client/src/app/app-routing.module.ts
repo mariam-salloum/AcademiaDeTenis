@@ -22,6 +22,9 @@ import { TiendaVirtualComponent } from './secciones/tienda-virtual/tienda-virtua
 import { CrearTorneoComponent } from './secciones/torneos/crear-torneo/crear-torneo.component';
 import { ParticipantesComponent } from './secciones/torneos/participantes/participantes.component';
 import { AgregarParticipanteComponent } from './secciones/torneos/participantes/agregar-participante/agregar-participante.component';
+import { PagoComponent } from './secciones/pagos/pago/pago.component';
+import { AgregarProductoComponent } from './secciones/tienda-virtual/agregar-producto/agregar-producto.component';
+import { ProductoComponent } from './secciones/tienda-virtual/producto/producto.component';
 
 const appRoutes = [
     { path: '', component: InicioComponent },
@@ -37,11 +40,13 @@ const appRoutes = [
     { path: 'crear-categoria', component: CrearCategoriaComponent, /*canActivate:[AuthGuard]*/},
     { path: 'atletas', component: AtletasComponent, /*canActivate:[AuthGuard]*/},
     { path: 'pagos', component: PagosComponent, /*canActivate:[AuthGuard]*/},
+    { path: 'pago/:id', component: PagoComponent, /*canActivate:[AuthGuard]*/},
     { path: 'tienda-virtual', component: TiendaVirtualComponent },
     { path: 'perfil', component: PerfilComponent, /*canActivate:[AuthGuard]*/},
     { path: 'participantes/:id', component: ParticipantesComponent},
-    { path: 'agregar-participante', component: AgregarParticipanteComponent, /*canActivate:[AuthGuard]*/},
-
+    { path: 'agregar-participante/:id', component: AgregarParticipanteComponent, /*canActivate:[AuthGuard]*/},
+    { path: 'producto/:id', component: ProductoComponent, /*canActivate:[AuthGuard]*/},
+    { path: 'agregar-producto', component: AgregarProductoComponent, /*canActivate:[AuthGuard]*/},
 ];
 
 @NgModule({

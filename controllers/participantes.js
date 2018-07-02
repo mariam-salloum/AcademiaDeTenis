@@ -120,7 +120,7 @@ function nextParticipante(req, res){
  */
 function deleteParticipante(req, res){
   let TorneoId = req.params.TorneoId
-  let ParticipanteId = req.paras.ParticipanteId
+  let ParticipanteId = req.params.ParticipanteId
     /*Busca la orden por su id*/
     Participante.find({torneo: TorneoId, jugador: ParticipanteId}, (err, participante) => {
     /*Elimina el torneo*/  

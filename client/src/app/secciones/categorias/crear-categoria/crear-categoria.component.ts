@@ -36,6 +36,7 @@ export class CrearCategoriaComponent implements OnInit {
       precio: this.membresia.precio,
       membresia: this.membresia
     }
+    
     this.authService.registrarCategoria(categoria).subscribe(data => {
       console.log(data); 
       if(data) {

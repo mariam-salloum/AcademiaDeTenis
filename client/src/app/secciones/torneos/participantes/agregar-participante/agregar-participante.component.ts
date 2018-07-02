@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../../auth/servicios/auth.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-agregar-participante',
@@ -9,14 +9,20 @@ import { Router } from '@angular/router';
 })
 export class AgregarParticipanteComponent implements OnInit {
   users: any;
+  user: any;
   torneo: String;
+  id: String;
+  nombre: String;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private activatedRouter: ActivatedRoute) { }
 
   ngOnInit() {
+    this.id = this.activatedRouter.snapshot.paramMap.get('id');
+    console.log(this.id);
+
     this.authService.getUsers().subscribe((user:any) => {
       // .body es String, por eso lo parseamos para ser convertido en array
-      console.log(user);
+      console.log("Usuarios"+user);
       this.users = JSON.parse(user._body);
       console.log(this.users);
     }, err => {
@@ -27,17 +33,19 @@ export class AgregarParticipanteComponent implements OnInit {
 
   onAddParticipante() {
     const participante = {
-      jugador: this.users._id,
-      nombre: this.users.nombreAtl,
-      torneo: this.torneo
+      nombre: this.user.nombreAtl +" "+ this.user.apellidoAtl,
+      jugador: this.user._id,
+      torneo: this.id
     }
 
+    console.log("VIVA "+participante.nombre + " / "+ participante.jugador + " / " + participante.torneo)
+    console.log("GGGG"+this.user.nombreAtl)
     this.authService.agregarParticipante(participante).subscribe(data => {
-      console.log(data); 
+      console.log("dataaa: ", data); 
 
       if(data) {
         console.log('Se ha agregado el particpante!');
-        this.router.navigate(['/participantes']);
+        this.router.navigate(['/participantes/' + this.id]);
       }
     }); 
   }

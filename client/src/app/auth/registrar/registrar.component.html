@@ -1,78 +1,123 @@
 <!-- REGISTRO DEL ATLETA -->
-<div class="col-md-6 example z-depth-1">
+<form (submit)="onRegisterSubmit()">
+  <div class="col-md-6 example z-depth-1">
     <h3 class="page-header">Registrar Atleta</h3>
-    <form (submit)="onRegisterSubmit()">
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <label>Nombre</label>
+          <input type="text" [(ngModel)]='nombreAtl' name='nombreAtl' class="form-control">
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <label>Apellido</label>
+          <input type="text" [(ngModel)]='apellidoAtl' name='apellidoAtl' class="form-control">
+        </div>
+      </div>
+    </div>
 
-      <div class="row">
-        <div class="col-6">
-          <div class="form-group">
-            <label>Nombre</label>
-            <input type="text" [(ngModel)]='nombreAtl' name='nombreAtl' class="form-control">
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="form-group">
-            <label>Apellido</label>
-            <input type="text" [(ngModel)]='apellidoAtl' name='apellidoAtl' class="form-control">
-          </div>
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <label>Cedula</label>
+          <input type="text" [(ngModel)]='cedulaAtl' name='cedulaAtl' class="form-control">
         </div>
       </div>
-      
-      <div class="row">
-        <div class="col-6">
-          <div class="form-group">
-            <label>Cedula</label>
-            <input type="text" [(ngModel)]='cedulaAtl' name='cedulaAtl' class="form-control">
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="form-group">
-            <label>Teléfono</label>
-            <input type="text" [(ngModel)]='telefonoAtl' name='telefonoAtl' placeholder="XXX XXX XXXX" class="form-control">
-          </div>
+      <div class="col-6">
+        <div class="form-group">
+          <label>Teléfono</label>
+          <input type="text" [(ngModel)]='telefonoAtl' name='telefonoAtl' placeholder="XXX XXX XXXX" class="form-control">
         </div>
       </div>
+    </div>
 
-      <div class="row">
-        <div class="col-6">
-          <div class="form-group">
-            <label>Género</label>
-            <select [(ngModel)]="sexoAtl" name="sexoAtl" form="generos" class="form-control">
-              <option value="volvo">Femenino</option>
-              <option value="saab">Masculino</option>
-              <option value="opel">Otro</option>
-            </select>
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="form-group">
-            <label>Categoría</label>
-            <br>
-            <select [(ngModel)]="nombreCtg" name="nombreCtg" style="width: 22rem;">
-              <option *ngFor="let categoria of categorias" [ngValue]="categoria">
-                {{categoria.nombre}} (${{categoria.precio}})
-              </option>
-            </select>
-          </div>
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <label>Género</label>
+          <select [(ngModel)]="sexoAtl" name="sexoAtl" form="generos" class="form-control">
+            <option value="volvo">Femenino</option>
+            <option value="saab">Masculino</option>
+            <option value="opel">Otro</option>
+          </select>
         </div>
       </div>
-        
-      <div class="form-group">
-        <label>Fecha de Nacimiento</label>
-        <input type="text" [(ngModel)]='fechaNacAtl' name='fechaNacAtl' placeholder="dd/mm/aaaa" class="form-control">
+      <div class="col-6">
+        <div class="form-group">
+          <label>Categoría</label>
+          <br>
+          <select [(ngModel)]="categoria" name="categoria" style="width: 22rem;">
+            <option *ngFor="let categoria of categorias" [ngValue]="categoria">
+              {{categoria.nombre}} (${{categoria.precio}})
+            </option>
+          </select>
+        </div>
       </div>
-      <div class="form-group">
-        <label>Email</label>
-        <input type="text" [(ngModel)]='email' name='email' placeholder="example@example.com" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label>Fecha de Nacimiento</label>
+      <input type="text" [(ngModel)]='fechaNacAtl' name='fechaNacAtl' placeholder="dd/mm/aaaa" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="text" [(ngModel)]='email' name='email' placeholder="example@example.com" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Contraseña</label>
+      <input type="password" [(ngModel)]='password' name='password' class="form-control">
+    </div>
+
+    <input type="submit" class="btn btn-light-green" value="Registrar" style="width: 47.5rem">
+  </div>
+
+  <!-- REPRESENTANTE -->
+  <div class="col-md-6 example z-depth-1">
+    <h3 class="page-header">Registrar Representante</h3>
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <label>Nombre</label>
+          <input type="text" [(ngModel)]='nombreRpr' name='nombreRpr' class="form-control">
+        </div>
       </div>
-      <div class="form-group">
-        <label>Contraseña</label>
-        <input type="password" [(ngModel)]='password' name='password' class="form-control">
+      <div class="col-6">
+        <div class="form-group">
+          <label>Apellido</label>
+          <input type="text" [(ngModel)]='apellidoRpr' name='apellidoRpr' class="form-control">
+        </div>
       </div>
-      
-      <input type="submit" class="btn btn-light-green" value="Registrar" style="width: 47.5rem">
-    </form>
-</div>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <div class="form-group">
+          <label>Cedula</label>
+          <input type="text" [(ngModel)]='cedulaRpr' name='cedulaRpr' class="form-control">
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="form-group">
+          <label>Teléfono</label>
+          <input type="text" [(ngModel)]='telefonoRpr' name='telefonoRpr' placeholder="XXX XXX XXXX" class="form-control">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Email</label>
+      <input type="text" [(ngModel)]='emailRpr' name='emailRpr' placeholder="example@example.com" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>PIN</label>
+      <input type="password" [(ngModel)]='pin' name='pin' class="form-control">
+    </div>
+  </div>
+
+
+</form>
+
 
 <!-- REGISTRAR REPRESENTANTE SI EL ATLETA ES MENOR DE EDAD -->
 <!-- <div class="col-md-6 example z-depth-1">

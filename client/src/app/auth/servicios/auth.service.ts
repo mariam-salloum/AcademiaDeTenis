@@ -66,6 +66,16 @@ export class AuthService {
       participante, {headers: headers}).pipe(map(res => res.json()));
   }
 
+  agregarProducto(producto) {
+    let headers = new Headers();
+    this.loadToken();
+    headers.append('Authorization', "@earer " + this.authToken);
+    console.log('producto registrado!');
+    return this.http.post(
+      'http://localhost:8080/api/producto',
+      producto, {headers: headers}).pipe(map(res => res.json()));
+  }
+
   // ELIMINAR - DELETE REQUESTS
   eliminarUsuario(_id) {
     let headers = new Headers();
@@ -111,8 +121,70 @@ export class AuthService {
       {headers: headers}).pipe(map(res => res.json()));
   }
 
+  eliminarParticipante(idTorneo, idParticipante) {
+    let headers = new Headers();
+    this.loadToken();
+    headers.append('Authorization', "@earer " + this.authToken);
+    console.log('participante eliminado!'+ idTorneo+ " / "+ idParticipante);
+    console.log('headers ', headers);
+    return this.http.delete(
+      'http://localhost:8080/api/participante/'+ idTorneo + "/" + idParticipante,
+      {headers: headers}).pipe(map(res => res.json()));
+  }
+
+  eliminarProducto(_id) {
+    let headers = new Headers();
+    this.loadToken();
+    headers.append('Authorization', "@earer " + this.authToken);
+    console.log('producto eliminado!'+ _id);
+    console.log('headers ', headers);
+    return this.http.delete(
+      'http://localhost:8080/api/producto/'+ _id,
+      {headers: headers}).pipe(map(res => res.json()));
+  }
+
   // UPDATES
+  modificarUsuario(_id, data) {
+    let headers = new Headers();
+    this.loadToken();
+    //headers.append('Authorization', "@earer " + this.authToken);
+    console.log('membresia modificandose!' + _id);
+    console.log('headers ', headers);
+    
+    
+    return this.http.put(
+      'http://localhost:8080/api/user/'+ _id, data,
+      {headers: headers}).pipe(map(res => res.json())); 
+  }
+
+  crearPago(data){
+    let headers = new Headers();
+    this.loadToken();
+    //headers.append('Authorization', "@earer " + this.authToken);
+    console.log('membresia modificandose!');
+    console.log('headers ', headers);
+    
+    return this.http.post(
+      'http://localhost:8080/api/pago', data,
+       {headers: headers}).pipe(map(res => res.json())
+    ); 
+  }
+
+  modificarPago(id,data){
+    let headers = new Headers();
+    this.loadToken();
+    //headers.append('Authorization', "@earer " + this.authToken);
+    console.log('membresia modificandose!');
+    console.log('headers ', headers);
+    
+    return this.http.put(
+      'http://localhost:8080/api/pago/' + id, data,
+       {headers: headers}).pipe(map(res => res.json())
+    ); 
+  }
+  
   modificarMembresia(_id,precio) {
+    console.log(_id + " "+ precio)
     let headers = new Headers();
     this.loadToken();
     //headers.append('Authorization', "@earer " + this.authToken);
@@ -121,6 +193,18 @@ export class AuthService {
     return this.http.put(
       'http://localhost:8080/api/membresia/'+ _id, 
       precio, {headers: headers}).pipe(map(res => res.json()));
+  }
+
+  modificarProducto(_id, producto) {
+    console.log(_id + " " + producto)
+    let headers = new Headers();
+    this.loadToken();
+    //headers.append('Authorization', "@earer " + this.authToken);
+    console.log('producto modificandose!' + _id);
+    console.log('headers ', headers);
+    return this.http.put(
+      'http://localhost:8080/api/producto/'+ _id, 
+      producto, {headers: headers}).pipe(map(res => res.json()));
   }
 
   // Autenticar usuario a la hora de iniciar sesion
@@ -195,7 +279,27 @@ export class AuthService {
       'http://localhost:8080/api/participantes/'+_id
     );
   }
+
+  getPagos(_id) {
+    return this.http.get(
+      'http://localhost:8080/api/pagos/'+_id
+    );
+  }
+
+  getProductos() {
+    return this.http.get(
+      'http://localhost:8080/api/productos'
+    );
+  }
+
+  getProducto(_id) {
+    return this.http.get(
+      'http://localhost:8080/api/producto/'+_id
+    );
+  }
+
   // -----
+  
   esAdministrador() {
     const rol = localStorage.getItem('rol');
     if(this.authToken != null && rol == 'admin') {

@@ -13,10 +13,10 @@
       <br>
       <select [(ngModel)]="membresia" name="membresia" style="width: 29rem;">
         <option *ngFor="let membresia of membresias" [ngValue]="membresia">
-          {{membresia.tipo}}
+          {{membresia.tipo}} (${{membresia.precio}})
         </option>
       </select>
-    </div>
+    </div> 
     <input type="submit" class="btn btn-light-green" value="Crear"> 
   </form>
 </div>

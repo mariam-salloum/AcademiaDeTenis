@@ -1,12 +1,30 @@
 <div class="row">
   <div class="col-md-8">
-      <h2>Torneos</h2>
+    <h2>Torneo /</h2>
   </div>
   <div class="col-md-4">
     <button class="btn btn-light-green">
-      <a routerLink="/agregar-participante"><i class="fa fa-plus"></i> Participante</a>
+      <a [routerLink]="['/agregar-participante/', this.id]">
+        <i class="fa fa-plus"></i> Participante</a>
     </button>
   </div>
 </div>
 <hr>
-  
+<table class="table table-hover">
+  <thead>
+    <th>Atleta</th>
+    <th>Estado</th>
+    <th></th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let participante of participantes">
+      <td>{{participante.nombre}}</td>
+      <td>{{participante.estado}}</td>
+      <td>
+        <a (click)="eliminar(participante._id)">
+          <i class="fa fa-trash"></i>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>

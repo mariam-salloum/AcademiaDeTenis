@@ -2,9 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'
 import { AppRoutingModule } from './app-routing.module';
-import { HttpModule } from '@angular/http'; 
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatTableModule, MatSortModule } from '@angular/material';
+import { HttpModule } from '@angular/http';
 
 import { JwtModule } from '@auth0/angular-jwt';
 import { HttpClientModule } from '@angular/common/http';
@@ -35,6 +33,9 @@ import { EditarMembresiaComponent } from './secciones/membresias/editar-membresi
 import { CrearTorneoComponent } from './secciones/torneos/crear-torneo/crear-torneo.component';
 import { ParticipantesComponent } from './secciones/torneos/participantes/participantes.component';
 import { AgregarParticipanteComponent } from './secciones/torneos/participantes/agregar-participante/agregar-participante.component';
+import { PagoComponent } from './secciones/pagos/pago/pago.component';
+import { AgregarProductoComponent } from './secciones/tienda-virtual/agregar-producto/agregar-producto.component';
+import { ProductoComponent } from './secciones/tienda-virtual/producto/producto.component';
 
 export function tokenGetter() {
   return localStorage.getItem('id_token');
@@ -60,7 +61,10 @@ export function tokenGetter() {
     EditarMembresiaComponent,
     CrearTorneoComponent,
     ParticipantesComponent,
-    AgregarParticipanteComponent
+    AgregarParticipanteComponent,
+    PagoComponent,
+    AgregarProductoComponent,
+    ProductoComponent
   ],
   imports: [
     BrowserModule,
